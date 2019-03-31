@@ -1,0 +1,15 @@
+{{ if .Values.ntopngConfig }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "kubernetes.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "kubernetes.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  ntopng.conf: |-
+{{ .Values.ntopngConfig | indent 4 }}
+{{ end }}

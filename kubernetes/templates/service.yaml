@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "kubernetes.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "kubernetes.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    app: ntopng
+  ports:
+  - name: ntopng
+    port: 80
+    targetPort: 3000
+    protocol: TCP

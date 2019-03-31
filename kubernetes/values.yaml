@@ -1,0 +1,21 @@
+ntopngNodeSelector:
+  node-role.kubernetes.io/node: "true"
+
+ntopngImageName: junquera/ntopng
+ntopngImageVersion: latest
+ntopngResources:
+  limits:
+    cpu: 1
+    memory: 512Mi
+  requests:
+    cpu: 500m
+    memory: 256Mi
+
+ntopngConfig: |-
+  --disable-login=1
+  --dns-mode=3
+  # Limit memory usage
+  --max-num-flows=200000
+  --max-num-hosts=250000
+  --interface=xxxxxx
+  --no-promisc

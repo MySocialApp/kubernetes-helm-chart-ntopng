@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Ntopng Helm chart for Kubernetes
+name: ntopng
+version: 0.1.0
